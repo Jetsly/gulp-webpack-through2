@@ -1,6 +1,6 @@
 const gulp = require('gulp');
-const webpack = require('');
-const package = require('./package.json');
+const webpack = require('../');
+const package = require('../package.json');
 
 gulp.task('default', function() {
     return gulp.src('src/entry.js')
