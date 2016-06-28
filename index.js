@@ -16,7 +16,7 @@ module.exports = function(options, done) {
     }
 
     function flushFunction(cb) {
-        console.log(2);
+
     }
 
     return through({
