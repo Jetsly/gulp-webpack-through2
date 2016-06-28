@@ -1,6 +1,5 @@
 const gulp = require('gulp');
-const webpack = require('../');
-const package = require('../package.json');
+const webpack = require('../index.js');
 
 gulp.task('default', function() {
     return gulp.src('src/entry.js')
@@ -9,8 +8,6 @@ gulp.task('default', function() {
             output: {
                 filename: 'app.js',
             },
-        })).on('error', () => {
-            this.emit('end');
-        })
+        }))
         .pipe(gulp.dest('dist/'));
 });
