@@ -11,15 +11,16 @@ module.exports = function(options, done) {
     var entry = [];
 
     function transformFunction(file, encoding, callback) {
-        console.log(file);
+        console.log(file.history);
+        console.log(JSON.stringify(file));
         this.push(file);
+        callback();
     }
 
     function flushFunction(cb) {
-
+        console.log(1);
+        // cb();
     }
 
-    return through({
-        objectMode: true
-    }, transformFunction, flushFunction);
+    return through.obj(transformFunction, flushFunction);
 }
