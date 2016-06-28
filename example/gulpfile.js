@@ -9,5 +9,5 @@ gulp.task('default', function() {
                 filename: 'app.js',
             },
         }))
-        .pipe(gulp.dest('dist/'));
+        .pipe(gulp.dest('build/'));
 });
