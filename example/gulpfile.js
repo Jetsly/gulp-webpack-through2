@@ -5,6 +5,7 @@ gulp.task('default', function() {
     return gulp.src('src/entry.js')
         .pipe(webpack({
             watch: true,
+            progress:true,
             output: {
                 filename: 'app.js',
             },

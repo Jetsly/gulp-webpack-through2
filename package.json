@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Jetsly/gulp-webpack-through2#readme",
   "dependencies": {
     "gulp-util": "^3.0.7",
+    "memory-fs": "^0.3.0",
     "through2": "^2.0.1",
     "vinyl": "^1.1.1",
     "webpack": "^1.13.1"

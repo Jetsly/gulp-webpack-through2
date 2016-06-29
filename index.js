@@ -1,11 +1,12 @@
 var gutil = require('gulp-util');
 var through = require('through2');
 var File = require('vinyl');
+var MemoryFileSystem = require("memory-fs");
 var webpack = require('webpack');
 var path = require('path');
 
-module.exports = function(options, done) {
 
+module.exports = function (options, done) {
     var entry = [];
 
     function transformFunction(file, encoding, callback) {
@@ -15,29 +16,36 @@ module.exports = function(options, done) {
 
     function flushFunction(cb) {
         var self = this;
-        var wp = webpack(Object.assign(options, {
+        var compiler = webpack(Object.assign(options, {
             entry: entry
-        }), function(err, stat) {
+        }));
+        //http://webpack.github.io/docs/node.js-api.html#compile-to-memory
+        var fs = compiler.outputFileSystem = new MemoryFileSystem();
+        compiler.run(function (err, stats) {
             if (err) {
                 gutil.log(err);
+                return;
             }
-            gutil.log(stat.toString({
+            gutil.log(stats.toString({
                 colors: gutil.colors.supportsColor
             }));
         });
-        // wp.compiler.plugin('after-emit', function(compilation, callback) {
-        //     Object.keys(compilation.assets).forEach(function(outname) {
-        //         if (compilation.assets[outname].emitted) {
-
-        //             // var file = prepareFile(fs, compiler, outname);
-        //             // self.push(file);
-        //         }
-        //     });
-        //     // callback();
-        // });
-        // cb();
-        // console.log(1);
     }
-
     return through.obj(transformFunction, flushFunction);
 }
+
+            // Object.keys(stats.compilation.assets).forEach(function (outname) {
+            //     if (stats.compilation.assets[outname].emitted) {
+            //         var _path=path.join(wp.compiler.outputPath, outname);
+            //         console.log(_path);
+            //         var contents =fs.existsSync(_path);
+            //         console.log(contents);
+            //         // self.push(new File({
+            //         //     base: compiler.outputPath,
+            //         //     path: path,
+            //         //     contents: contents
+            //         // }));
+            //     }
+            //     // console.log(Object.keys(stats.compilation.assets[outname]));
+            // });
+            // cb();
