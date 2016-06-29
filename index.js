@@ -1,42 +1,42 @@
-var through = require('through2');
-var webpack = require('webpack');
 var gutil = require('gulp-util');
+var through = require('through2');
+var File = require('vinyl');
+var webpack = require('webpack');
+var path = require('path');
 
-var statsOptions = {
-
-}
-
-module.exports = function (options, done) {
+module.exports = function(options, done) {
 
     var entry = [];
 
     function transformFunction(file, encoding, callback) {
-        entry.push(file.history[0])
+        entry.push(`./${path.relative(file.cwd, file.path)}`)
         callback();
     }
 
     function flushFunction(cb) {
-        var self=this;
-        console.log(entry);
+        var self = this;
         var wp = webpack(Object.assign(options, {
             entry: entry
-        }), function (err, stat) {
+        }), function(err, stat) {
             if (err) {
-                console.log(err);
+                gutil.log(err);
             }
-            // console.log(stat);
+            gutil.log(stat.toString({
+                colors: gutil.colors.supportsColor
+            }));
         });
-        wp.compiler.plugin('after-emit', function (compilation, callback) {
-            Object.keys(compilation.assets).forEach(function (outname) {
-                if (compilation.assets[outname].emitted) {
+        // wp.compiler.plugin('after-emit', function(compilation, callback) {
+        //     Object.keys(compilation.assets).forEach(function(outname) {
+        //         if (compilation.assets[outname].emitted) {
 
-                    // var file = prepareFile(fs, compiler, outname);
-                    // self.push(file);
-                }
-            });
-            // callback();
-        });
+        //             // var file = prepareFile(fs, compiler, outname);
+        //             // self.push(file);
+        //         }
+        //     });
+        //     // callback();
+        // });
         // cb();
+        // console.log(1);
     }
 
     return through.obj(transformFunction, flushFunction);

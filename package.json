@@ -1,30 +1,31 @@
 {
-    "name": "gulp-webpack-through2",
-    "version": "0.0.1",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "engines": {
-        "node": ">= 4.4.3"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Jetsly/gulp-webpack-through2.git"
-    },
-    "author": "diandi@in66.com",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Jetsly/gulp-webpack-through2/issues"
-    },
-    "homepage": "https://github.com/Jetsly/gulp-webpack-through2#readme",
-    "dependencies": {
-        "gulp-util": "^3.0.7",
-        "through2": "^2.0.1",
-        "webpack": "^1.13.1"
-    },
-    "devDependencies": {
-        "gulp": "^3.9.1"
-    }
+  "name": "gulp-webpack-through2",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">= 4.4.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jetsly/gulp-webpack-through2.git"
+  },
+  "author": "diandi@in66.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jetsly/gulp-webpack-through2/issues"
+  },
+  "homepage": "https://github.com/Jetsly/gulp-webpack-through2#readme",
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "through2": "^2.0.1",
+    "vinyl": "^1.1.1",
+    "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
 }
