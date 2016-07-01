@@ -6,7 +6,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 
-module.exports = function (options, done) {
+module.exports = function(options, done) {
     var defaultOptions = {
         entry: []
     }
@@ -21,7 +21,7 @@ module.exports = function (options, done) {
 
     function flushFunction(cb) {
         var self = this;
-        var _option = Object.assign(options, defaultOptions);
+        var _option = Object.assign(defaultOptions, options);
         _option.output.path = _option.output.path || process.cwd();
         var compiler = webpack(_option, (err, stats) => {
             gutil.log(stats.toString(statsOptions));
@@ -42,7 +42,7 @@ module.exports = function (options, done) {
                     }));
                 }
             });
-            (_option.watch ? (() => { }) : cb)();
+            (_option.watch ? (() => {}) : cb)();
         })
     }
     return through.obj(transformFunction, flushFunction);

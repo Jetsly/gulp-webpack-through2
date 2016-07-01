@@ -19,6 +19,8 @@ gulp.task('default', function() {
         .pipe(gulp.dest('build/'));
 });
 ```
+> if `entry` set,`gulp.src` is not used;
+
 
 ## Installation
 
@@ -28,7 +30,7 @@ $ npm install gulp-webpack-through2
 
 ## Features
 
-  * watch files to compiler
+  * run webpack with webpackConfig for gulp
 
 
 ## Examples
