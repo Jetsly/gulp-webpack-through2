@@ -4,7 +4,7 @@
     "description": "Run webpack with through2 for gulp",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "node test/test.js"
     },
     "engines": {
         "node": ">= 4.4.3"
