@@ -15,12 +15,52 @@ gulp.task('default', function() {
             output: {
                 filename: 'app.js'
             }
+        }, {
+                timings: true,
+                errorDetails: true
         }))
         .pipe(gulp.dest('build/'));
 });
 ```
-> if `entry` set,`gulp.src` is not used;
 
+## webpack(webpackConfig,statOptions)
+
+ webpackConfig: http://webpack.github.io/docs/configuration.html
+
+
+`statsOptions.context` (string) context directory for request shortening
+
+`statsOptions.hash` add the hash of the compilation
+
+`statsOptions.version` add webpack version information
+
+`statsOptions.timings` add timing information
+
+`statsOptions.assets` add assets information
+
+`statsOptions.chunks` add chunk information (setting this to false allows for a less verbose output)
+
+`statsOptions.chunkModules` add built modules information to chunk information
+
+`statsOptions.modules` add built modules information
+
+`statsOptions.children` add children information
+
+`statsOptions.cached` add also information about cached (not built) modules
+
+`statsOptions.reasons` add information about the reasons why modules are included
+
+`statsOptions.source` add the source code of modules
+
+`statsOptions.errorDetails` add details to errors (like resolving log)
+
+`statsOptions.chunkOrigins` add the origins of chunks and chunk merging info
+
+`statsOptions.modulesSort` (string) sort the modules by that field
+
+`statsOptions.chunksSort` (string) sort the chunks by that field
+
+`statsOptions.assetsSort` (string) sort the assets by that field
 
 ## Installation
 

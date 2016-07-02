@@ -8,7 +8,10 @@ gulp.task('default', () => {
             output: {
                 filename: 'app.js'
             }
-        }))
+        }, {
+                timings: true,
+                errorDetails: true
+            }))
         .pipe(gulp.dest('build/'));
 });
 
