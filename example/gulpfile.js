@@ -4,7 +4,6 @@ const webpack = require('../index.js');
 gulp.task('default', () => {
     return gulp.src('src/entry.js')
         .pipe(webpack({
-            watch: true,
             output: {
                 filename: 'app.js'
             }
