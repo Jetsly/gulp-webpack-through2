@@ -32,6 +32,7 @@ $ npm install gulp-webpack-through2
 
   * run webpack with webpackConfig for gulp
   * exports webpack
+  * add Progress 
 
 
 ## Examples

@@ -31,6 +31,11 @@ module.exports = function (options, done) {
             compiler = compiler.compiler;
         }
         var fs = compiler.outputFileSystem = new MemoryFileSystem(); //must set output.path
+        if (_option.progress) {
+            compiler.apply(new ProgressPlugin(function (percentage, msg) {
+                gutil.log('webpack', ` ${Math.floor(percentage * 100)}%${msg}`);
+            }));
+        }
         compiler.plugin("done", stats => {
             Object.keys(stats.compilation.assets).forEach(outname => {
                 if (stats.compilation.assets[outname].emitted) {
