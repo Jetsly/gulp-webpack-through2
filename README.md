@@ -31,6 +31,7 @@ $ npm install gulp-webpack-through2
 ## Features
 
   * run webpack with webpackConfig for gulp
+  * exports webpack
 
 
 ## Examples

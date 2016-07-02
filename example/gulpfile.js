@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const webpack = require('../index.js');
 
-gulp.task('default', function() {
+gulp.task('default', () => {
     return gulp.src('src/entry.js')
         .pipe(webpack({
             watch: true,
@@ -11,3 +11,7 @@ gulp.task('default', function() {
         }))
         .pipe(gulp.dest('build/'));
 });
+
+gulp.task('test', () => {
+    console.log(webpack.webpack);
+})

@@ -6,7 +6,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 
-module.exports = function(options, done) {
+module.exports = function (options, done) {
     var defaultOptions = {
         entry: []
     }
@@ -42,8 +42,10 @@ module.exports = function(options, done) {
                     }));
                 }
             });
-            (_option.watch ? (() => {}) : cb)();
+            (_option.watch ? (() => { }) : cb)();
         })
     }
     return through.obj(transformFunction, flushFunction);
 }
+//exports 
+module.exports.webpack = webpack;

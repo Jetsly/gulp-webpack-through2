@@ -4,7 +4,8 @@
   "description": "Run webpack with through2 for gulp",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha test/test.js"
+    "test": "node_modules/.bin/mocha test/test.js",
+    "example":"gulp --gulpfile=example/gulpfile.js test"
   },
   "engines": {
     "node": ">= 4.4.3"
