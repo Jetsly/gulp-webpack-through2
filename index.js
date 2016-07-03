@@ -32,9 +32,12 @@ module.exports = function (options, statsOptions, done) {
 
     function compressFile(options) {
         var self = this;
-        if (options.compressEntry) {
-            Object.keys(options.compressEntry).forEach(name => {
-                var result = ugjs.minify(options.compressEntry[name]);
+        if (options.compress) {
+            _ugConfig = Object.assign({}, options.compress);
+            delete _ugConfig.entry;
+            Object.keys(options.compress.entry).forEach(name => {
+                gutil.log(`Compress start: ${gutil.colors.green.bold(name)}`);
+                var result = ugjs.minify(options.compress.entry[name], _ugConfig);
                 var crypto = require("crypto").createHash(options.output.hashFunction);
                 crypto.update(result.code);
                 hash = crypto.digest(options.output.hashDigest).substr(0, options.output.hashDigestLength);
@@ -42,14 +45,24 @@ module.exports = function (options, statsOptions, done) {
                     .replace('[name]', name).replace('[id]', name)
                     .replace('[hash]', hash).replace('[chunkhash]', hash);
                 var _path = path.join(options.output.path, outname);
-
+                var _buf = new Buffer(result.code);
+                var _size = '';
+                if (_buf.length < 1024) {
+                    _size = `${_buf.length} bytes`
+                }
+                else if (_buf.length > 1048576) {
+                    _size = `${(_buf.length / 1048576).toFixed(2)} MB`
+                }
+                else {
+                    _size = `${(_buf.length / 1024).toFixed(2)} KB`
+                }
                 self.push(new gutil.File({
                     base: '',
                     path: _path,
-                    contents: new Buffer(result.code)
+                    contents: _buf
                 }));
                 // gutil.log(`Compress: \u001b[1m\u001b[33m =>\u001b[39m`);
-                gutil.log(`Compress: ${gutil.colors.green.bold(options.compressEntry[name] + ' => ' + outname)}`);
+                gutil.log(`Compress success: => ${gutil.colors.green.bold(outname)} ${_size}`);
             })
         }
     }
@@ -57,10 +70,6 @@ module.exports = function (options, statsOptions, done) {
     function addProgress(_option) {
         if (_option.progress) {
             _option.plugins.push(new webpack.ProgressPlugin(function (percentage, msg) {
-                if (percentage > 0) {
-                    readline.moveCursor(process.stdout, 0, -1);
-                    readline.clearLine(process.stdout, 0)
-                }
                 var msg = Math.floor(percentage * 100) + '%  ' + msg;
                 gutil.log(`Progress: ${gutil.colors.green.bold(msg)}`);
             }));
@@ -120,7 +129,7 @@ module.exports = function (options, statsOptions, done) {
         if (_option.watch && compiler.compiler) {
             compiler = compiler.compiler;
         }
-        
+
         compilerDone.bind(self)(compiler, cb);
 
         compressFile.bind(self)(compiler.options);

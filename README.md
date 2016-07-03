@@ -31,10 +31,13 @@ gulp.task('default', function() {
  
  > *  `verbose` show all stats information
 
- > *  `compressEntry` 配置不转换直接压缩的js文件
+ > *  `compress` 配置不转换直接压缩的js文件,包含[uglifyjs](https://github.com/mishoo/UglifyJS2#api-reference)的配置
 
-        compressEntry:{
-           vendor:['a.js','b.js']
+        compress: {
+          entry: {
+             vendor: ['src/a.js', 'src/b.js']
+          },
+          compress:false //不压缩只合并
         },
         output: {
            filename: '[name].bundle.js'

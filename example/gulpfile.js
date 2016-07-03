@@ -4,8 +4,11 @@ const webpack = require('../index.js');
 gulp.task('default', () => {
     return gulp.src('src/entry.js')
         .pipe(webpack({
-            compressEntry: {
-                vendor: ['src/a.js', 'src/b.js']
+            compress: {
+                entry: {
+                    vendor: ['src/a.js', 'src/b.js']
+                },
+                compress: false
             },
             output: {
                 filename: '[name].bundle.js'
@@ -18,8 +21,11 @@ gulp.task('watch', () => {
     return gulp.src('src/entry.js')
         .pipe(webpack({
             watch: true,
-            compressEntry: {
-                vendor: ['src/a.js', 'src/b.js']
+            compress: {
+                entry: {
+                    vendor: ['src/a.js', 'src/b.js']
+                },
+                compress: false
             },
             output: {
                 filename: '[name].bundle.js'

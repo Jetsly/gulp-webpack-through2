@@ -1,6 +1,6 @@
 {
   "name": "gulp-webpack-through2",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "通过gulp运行webpcak",
   "main": "index.js",
   "scripts": {
