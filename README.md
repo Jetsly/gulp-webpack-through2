@@ -31,7 +31,7 @@ gulp.task('default', function() {
  
  > *  `verbose` show all stats information
 
- > *  `compressEntry` 配置压缩的js文件
+ > *  `compressEntry` 配置不转换直接压缩的js文件
 
         compressEntry:{
            vendor:['a.js','b.js']
