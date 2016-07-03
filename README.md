@@ -13,7 +13,7 @@ gulp.task('default', function() {
         .pipe(webpack({
             watch: true,
             output: {
-                filename: 'app.js'
+                filename: '[name].bundle.js'
             }
         }, {
                 timings: true,
@@ -25,43 +25,58 @@ gulp.task('default', function() {
 
 ## webpack(webpackConfig,statOptions)
 
- webpackConfig: http://webpack.github.io/docs/configuration.html
+ *  `webpackConfig` include [webpackConfig](http://webpack.github.io/docs/configuration.html)
+ 
+ > *  `progress` show webpack progress
+ 
+ > *  `verbose` show all stats information
+
+ > *  `compressEntry` 配置压缩的js文件
+
+        compressEntry:{
+           vendor:['a.js','b.js']
+        },
+        output: {
+           filename: '[name].bundle.js'
+        }
+        //压缩合并`a.js`+ `b.js` => `wendor.bundle.js` 
+
 
  *  `statsOptions`
 
-  >* `context` (string) context directory for request shortening
+ > * `context` (string) context directory for request shortening
 
-  >* `hash` add the hash of the compilation
+ > * `hash` add the hash of the compilation
 
-  >* `version` add webpack version information
+ > * `version` add webpack version information
 
-  >* `timings` add timing information
+ > * `timings` add timing information
 
-  >* `assets` add assets information
+ > * `assets` add assets information
 
-  >* `chunks` add chunk information (setting this to false allows for a less verbose output)
+ > * `chunks` add chunk information (setting this to false allows for a less verbose output)
 
-  >* `chunkModules` add built modules information to chunk information
+ > * `chunkModules` add built modules information to chunk information
 
-  >* `modules` add built modules information
+ > * `modules` add built modules information
 
-  >* `children` add children information
+ > * `children` add children information
 
-  >* `cached` add also information about cached (not built) modules
+ > * `cached` add also information about cached (not built) modules
 
-  >* `reasons` add information about the reasons why modules are included
+ > * `reasons` add information about the reasons why modules are included
 
-  >* `source` add the source code of modules
+ > * `source` add the source code of modules
 
-  >* `errorDetails` add details to errors (like resolving log)
+ > * `errorDetails` add details to errors (like resolving log)
 
-  >* `chunkOrigins` add the origins of chunks and chunk merging info
+ > * `chunkOrigins` add the origins of chunks and chunk merging info
 
-  >* `modulesSort` (string) sort the modules by that field
+ > * `modulesSort` (string) sort the modules by that field
 
-  >* `chunksSort` (string) sort the chunks by that field
+ > * `chunksSort` (string) sort the chunks by that field
 
-  >* `assetsSort` (string) sort the assets by that field
+ > * `assetsSort` (string) sort the assets by that field
 
 ## Installation
 
@@ -71,10 +86,9 @@ $ npm install gulp-webpack-through2
 
 ## Features
 
-  * run webpack with webpackConfig for gulp
-  * exports webpack
-  * add Progress 
-
+  * 通过`gulp`运行`webpack`
+  * 配置`js`文件直接压缩不处理
+|
 
 ## Examples
 
