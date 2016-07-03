@@ -27,40 +27,41 @@ gulp.task('default', function() {
 
  webpackConfig: http://webpack.github.io/docs/configuration.html
 
+ *  `statsOptions`
 
-`statsOptions.context` (string) context directory for request shortening
+  >* `context` (string) context directory for request shortening
 
-`statsOptions.hash` add the hash of the compilation
+  >* `hash` add the hash of the compilation
 
-`statsOptions.version` add webpack version information
+  >* `version` add webpack version information
 
-`statsOptions.timings` add timing information
+  >* `timings` add timing information
 
-`statsOptions.assets` add assets information
+  >* `assets` add assets information
 
-`statsOptions.chunks` add chunk information (setting this to false allows for a less verbose output)
+  >* `chunks` add chunk information (setting this to false allows for a less verbose output)
 
-`statsOptions.chunkModules` add built modules information to chunk information
+  >* `chunkModules` add built modules information to chunk information
 
-`statsOptions.modules` add built modules information
+  >* `modules` add built modules information
 
-`statsOptions.children` add children information
+  >* `children` add children information
 
-`statsOptions.cached` add also information about cached (not built) modules
+  >* `cached` add also information about cached (not built) modules
 
-`statsOptions.reasons` add information about the reasons why modules are included
+  >* `reasons` add information about the reasons why modules are included
 
-`statsOptions.source` add the source code of modules
+  >* `source` add the source code of modules
 
-`statsOptions.errorDetails` add details to errors (like resolving log)
+  >* `errorDetails` add details to errors (like resolving log)
 
-`statsOptions.chunkOrigins` add the origins of chunks and chunk merging info
+  >* `chunkOrigins` add the origins of chunks and chunk merging info
 
-`statsOptions.modulesSort` (string) sort the modules by that field
+  >* `modulesSort` (string) sort the modules by that field
 
-`statsOptions.chunksSort` (string) sort the chunks by that field
+  >* `chunksSort` (string) sort the chunks by that field
 
-`statsOptions.assetsSort` (string) sort the assets by that field
+  >* `assetsSort` (string) sort the assets by that field
 
 ## Installation
 
