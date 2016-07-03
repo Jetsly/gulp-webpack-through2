@@ -49,7 +49,7 @@ module.exports = function (options, statsOptions, done) {
                     contents: new Buffer(result.code)
                 }));
                 // gutil.log(`Compress: \u001b[1m\u001b[33m =>\u001b[39m`);
-                gutil.log(`Compress: ${gutil.colors.green.bold(options.compressEntry[name]+' => '+outname)}`);
+                gutil.log(`Compress: ${gutil.colors.green.bold(options.compressEntry[name] + ' => ' + outname)}`);
             })
         }
     }
@@ -70,11 +70,6 @@ module.exports = function (options, statsOptions, done) {
 
     function compilerDone(compiler, cb) {
         var self = this;
-        //if is watch  compiler is compiler.compiler;
-        if (compiler.options.watch && compiler.compiler) {
-            compiler = compiler.compiler;
-        }
-
         var fs = compiler.outputFileSystem = new MemoryFileSystem(); //must set output.path
         compiler.plugin("done", stats => {
             Object.keys(stats.compilation.assets).forEach(outname => {
@@ -121,6 +116,11 @@ module.exports = function (options, statsOptions, done) {
             }
             (done || (() => { }))(stats);
         });
+        //if is watch  compiler is compiler.compiler;
+        if (_option.watch && compiler.compiler) {
+            compiler = compiler.compiler;
+        }
+        
         compilerDone.bind(self)(compiler, cb);
 
         compressFile.bind(self)(compiler.options);

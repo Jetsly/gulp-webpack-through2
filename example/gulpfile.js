@@ -10,10 +10,21 @@ gulp.task('default', () => {
             output: {
                 filename: '[name].bundle.js'
             }
-        }, {
-                timings: true,
-                errorDetails: true
-            }))
+        }))
+        .pipe(gulp.dest('build/'));
+});
+
+gulp.task('watch', () => {
+    return gulp.src('src/entry.js')
+        .pipe(webpack({
+            watch: true,
+            compressEntry: {
+                vendor: ['src/a.js', 'src/b.js']
+            },
+            output: {
+                filename: '[name].bundle.js'
+            }
+        }))
         .pipe(gulp.dest('build/'));
 });
 
